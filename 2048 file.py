@@ -16,6 +16,8 @@ score = 0
 
 number = 0
 
+game_over = False
+
 tiles = []
 
 block_lst = []
@@ -190,8 +192,12 @@ def count_score():
         score += tile.value
     return score    
 
-#hi ggg
-
+def check_end_game(tiles):
+    for tile in tiles:
+        if tile.value == 0:
+            return False
+    else:
+        return True
 def create_block(number):
     global block_lst
     id = 1
@@ -261,7 +267,7 @@ while True:
                 if event.key == pygame.K_BACKSPACE:
                     text = text[:-1]
                 if event.key == pygame.K_SPACE:
-                    if 3 < int(text) < 6 :
+                    if 3 <= int(text) <= 6 :
                         number = int(text)
                         getting_number = False 
                         create_block(number) 
@@ -289,15 +295,19 @@ while True:
         number_text_rect = number_text.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
         screen.blit(number_text , number_text_rect)
     else:
-        # print(len(tiles))
-        if not tiles:
-            create_tile()
-        if changed :
-            tiles = r(tiles)
-            changed = False
+        if not game_over:
+            
+            # print(len(tiles))
+            if not tiles:
+                create_tile()
+            if check_end_game(tiles):
+                game_over = True    
+            if changed :
+                tiles = r(tiles)
+                changed = False
 
-        if len(block_lst) != number * number:
-            create_block()
-        draw()
+            if len(block_lst) != number * number:
+                create_block()
+            draw()
     pygame.display.update()
     clock.tick(60)
