@@ -190,6 +190,7 @@ def count_score():
         score += tile.value
     return score    
 
+#hi ggg
 
 def create_block(number):
     global block_lst
