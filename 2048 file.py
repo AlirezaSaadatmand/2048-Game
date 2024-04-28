@@ -23,15 +23,19 @@ tiles = []
 block_lst = []
 
 colors = {
-    2 : "#eee4db",
-    4 : "#f0e3d0",
-    8 : "#f3b177",
-    16 : "#ee9a66",
-    32 : "#ff7c6b",
-    64 : "#f4613b",
-    128 : "#eccf7a",
-    256 : "#eed666",
-    512 : "#f1cc47"
+    2 : "#eee4da",
+    4 : "#ede0c8",
+    8 : "#f2b179",
+    16 : "#f59563",
+    32 : "#f67c60",
+    64 : "#f65e3b",
+    128 : "#edcf73",
+    256 : "#edcc62",
+    512 : "#edc850",
+    1024 : "#edc53f",
+    2048 : "#edc22d",
+    4096 : "#39372e",
+    8192 : "#39372e"
 }
 
 class Tile:
@@ -48,7 +52,8 @@ class Block:
         self.unit = unit
         self.value = 0
         self.id = id
-    
+
+ 
 def create_tile():
     id = 1 
     for i in range(1 , number + 1):
@@ -193,11 +198,15 @@ def count_score():
     return score    
 
 def check_end_game(tiles):
-    for tile in tiles:
-        if tile.value == 0:
-            return False
+    x , check1 = up(tiles)
+    x , check2 = down(tiles)
+    x , check3 = right(tiles)
+    x , check4 = left(tiles)
+    if check1 or check2 or check3 or check4:
+        return False
     else:
         return True
+
 def create_block(number):
     global block_lst
     id = 1
@@ -219,7 +228,7 @@ def draw():
     
     for block in block_lst:
         b = pygame.Surface( (block.unit - 4 , block.unit - 4) )
-        b.fill("#d0c2b9")
+        b.fill("#c1b3a4")
         b_rect = b.get_rect(center = (block.x , block.y))
         screen.blit(b , b_rect)
         for tile in tiles:
@@ -232,9 +241,7 @@ def draw():
                 text_rect = text.get_rect(center = (block.x , block.y))
                 screen.blit(text , text_rect)
                 break
-                
-                
-
+                            
 pygame.init()
 screen = pygame.display.set_mode( (WIDTH , HEIGHT) )
 screen.fill("#fbf8f1")
@@ -253,7 +260,6 @@ border_sur = pygame.Surface( (HEIGHT - 100 ,  HEIGHT - 100) )
 border_sur.fill("#bbada2")
 border_sur_rect = border_sur.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
 
-
 text = ""
 changed = True
 
@@ -271,12 +277,11 @@ while True:
                         number = int(text)
                         getting_number = False 
                         create_block(number) 
-
                 else:
                     if event.unicode.isdigit():
                         text += str(event.unicode)
         else:
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN and not game_over:
                 if event.key == pygame.K_UP:
                     tiles , changed = up(tiles)
                 if event.key == pygame.K_DOWN:
@@ -297,7 +302,6 @@ while True:
     else:
         if not game_over:
             
-            # print(len(tiles))
             if not tiles:
                 create_tile()
             if check_end_game(tiles):
