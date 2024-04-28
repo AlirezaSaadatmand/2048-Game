@@ -197,15 +197,18 @@ def count_score():
         score += tile.value
     return score    
 
-def check_end_game(tiles):
-    x , check1 = up(tiles)
-    x , check2 = down(tiles)
-    x , check3 = right(tiles)
-    x , check4 = left(tiles)
-    if check1 or check2 or check3 or check4:
-        return False
+def check_end_game(tiles): 
+    for tile in tiles:
+        x_pos = tile.x
+        y_pos = tile.y
+        for t in tiles:
+            if t.x == x_pos-1 or t.x == x_pos+1 or t.y == y_pos or t.y == y_pos:
+                if t.value == tile.value or t.value == 0:
+                    return False
+                break
     else:
         return True
+                    
 
 def create_block(number):
     global block_lst
