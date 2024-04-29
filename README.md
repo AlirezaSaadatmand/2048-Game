@@ -9,10 +9,11 @@ I'm still working on it .
 
 Here is a demo .
 
-![Screenshot 2024-04-29 035127](https://github.com/AlirezaSaadatmand/2048-Game/assets/157215281/307f2137-8846-425b-864e-44ad45838f2b)
+![Screenshot 2024-04-29 040756](https://github.com/AlirezaSaadatmand/2048-Game/assets/157215281/12eb4ce2-000d-40df-971e-b8417978a224)
+
 
 
 it can be small or big
 
 
-![Screenshot 2024-04-29 040756](https://github.com/AlirezaSaadatmand/2048-Game/assets/157215281/67a306a1-d147-4196-a866-4e15c16d2b83)
+![Screenshot 2024-04-29 132652](https://github.com/AlirezaSaadatmand/2048-Game/assets/157215281/a69d6486-c2d5-4594-aeb8-a292f4289efb)
