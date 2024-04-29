@@ -199,18 +199,25 @@ def count_score():
 
 def check_end_game(tiles): 
     for tile in tiles:
-        if tile.value > 0:
-            x_pos = tile.x
-            y_pos = tile.y
-            for t in tiles:
-                if t.x == x_pos-1 or t.x == x_pos + 1 or t.y == y_pos - 1 or t.y == y_pos + 1:
-                    if t.value == tile.value or t.value == 0:
-                        print(x_pos , y_pos)
-                        
-                        return False
-    else:            
-        return True
-                        
+        topTile = tile.y - 1
+        bottomTile = tile.y + 1
+        leftTile = tile.x - 1
+        rightTile = tile.x + 1
+        posX = tile.x
+        posY = tile.y
+        lst = []
+        for i in tiles :
+            if (i.x == rightTile and i.y == posY) or (i.x == leftTile and i.y == posY) or (i.y == topTile and i.x == posX) or (i.y == bottomTile and i.x == posX):
+               lst.append(i)
+        
+        for i in lst:
+            if i.value == tile.value or i.value == 0:
+                return False
+    else:
+        return True         
+    
+    
+      
 def create_block(number):
     global block_lst
     id = 1
@@ -285,6 +292,7 @@ while True:
                         text += str(event.unicode)
         else:
             if event.type == pygame.KEYDOWN and not game_over:
+
                 if event.key == pygame.K_UP:
                     tiles , changed = up(tiles)
                 if event.key == pygame.K_DOWN:
@@ -293,6 +301,8 @@ while True:
                     tiles , changed = right(tiles)
                 if event.key == pygame.K_LEFT:
                     tiles , changed = left(tiles)
+                if check_end_game(tiles):
+                    game_over = True
     if getting_number:
         
         screen.blit(begin_text , begin_text_rect)
@@ -310,8 +320,7 @@ while True:
             if changed :
                 tiles = r(tiles)
                 changed = False
-            if check_end_game(tiles):
-                game_over = True    
+   
 
             if len(block_lst) != number * number:
                 create_block()
