@@ -199,25 +199,17 @@ def count_score():
 
 def check_end_game(tiles): 
     for tile in tiles:
-        topTile = tile.y - 1
-        bottomTile = tile.y + 1
-        leftTile = tile.x - 1
-        rightTile = tile.x + 1
-        posX = tile.x
-        posY = tile.y
-        lst = []
-        for i in tiles :
-            if (i.x == rightTile and i.y == posY) or (i.x == leftTile and i.y == posY) or (i.y == topTile and i.x == posX) or (i.y == bottomTile and i.x == posX):
-               lst.append(i)
-        
-        for i in lst:
-            if i.value == tile.value or i.value == 0:
-                return False
+        x_pos = tile.x
+        y_pos = tile.y
+        for t in tiles:
+            if t.x == x_pos-1 or t.x == x_pos+1 or t.y == y_pos or t.y == y_pos:
+                if t.value == tile.value or t.value == 0:
+                    return False
+                break
     else:
-        return True         
-    
-    
-      
+        return True
+                    
+
 def create_block(number):
     global block_lst
     id = 1
@@ -236,8 +228,9 @@ def draw():
     
     screen.blit(border_sur , border_sur_rect)
     
+    
     for block in block_lst:
-        b = pygame.Surface( (block.unit - 5 , block.unit - 5) )
+        b = pygame.Surface( (block.unit - 4 , block.unit - 4) )
         b.fill("#c1b3a4")
         b_rect = b.get_rect(center = (block.x , block.y))
         screen.blit(b , b_rect)
@@ -267,7 +260,7 @@ sur.fill("white")
 sur_rect = sur.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
 
 border_sur = pygame.Surface( (HEIGHT - 100 ,  HEIGHT - 100) )
-border_sur.fill("#ad9d8f")
+border_sur.fill("#bbada2")
 border_sur_rect = border_sur.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
 
 text = ""
@@ -292,7 +285,6 @@ while True:
                         text += str(event.unicode)
         else:
             if event.type == pygame.KEYDOWN and not game_over:
-
                 if event.key == pygame.K_UP:
                     tiles , changed = up(tiles)
                 if event.key == pygame.K_DOWN:
@@ -301,8 +293,6 @@ while True:
                     tiles , changed = right(tiles)
                 if event.key == pygame.K_LEFT:
                     tiles , changed = left(tiles)
-                if check_end_game(tiles):
-                    game_over = True
     if getting_number:
         
         screen.blit(begin_text , begin_text_rect)
@@ -317,15 +307,14 @@ while True:
             
             if not tiles:
                 create_tile()
+            if check_end_game(tiles):
+                game_over = True    
             if changed :
                 tiles = r(tiles)
                 changed = False
-   
 
             if len(block_lst) != number * number:
                 create_block()
             draw()
-        else:
-            print("you lost")
     pygame.display.update()
     clock.tick(60)
