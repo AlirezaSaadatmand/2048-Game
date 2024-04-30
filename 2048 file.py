@@ -1,5 +1,4 @@
 import random
-import os
 import pygame
 from sys import exit
 import pyautogui
@@ -275,7 +274,6 @@ sur_rect = sur.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
 border_sur = pygame.Surface( (HEIGHT - 100 ,  HEIGHT - 100) )
 border_sur.fill("#ad9d8f")
 border_sur_rect = border_sur.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
-
 
 text = ""
 changed = True
