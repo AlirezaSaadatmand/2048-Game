@@ -278,6 +278,7 @@ border_sur_rect = border_sur.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
 text = ""
 changed = True
 
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -335,6 +336,11 @@ while True:
                 create_block()
             draw()
         else:
-            print(moves)
+            end_game_text = pygame.font.Font(None , 40)
+            end_game_text = end_game_text.render(f"moves : {moves}" , "black" , True)
+            end_game_rect = end_game_text.get_rect(center = (((WIDTH / 2) - (HEIGHT-100) / 2) / 2 , ((WIDTH / 2) - (HEIGHT-100) *2 / 3) ))
+
+            screen.blit(end_game_text , end_game_rect)
+
     pygame.display.update()
     clock.tick(60)
