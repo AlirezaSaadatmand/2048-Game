@@ -39,61 +39,6 @@ colors = {
     8192 : "#39372e"
 }
 
-def up(tiles):
-    chagneed = False
-    lst = []
-    for i in range(1 , number +1):
-        lst1 = []
-        for j in range(1 , number + 1):
-            for tile in tiles:
-                if tile.x == i and tile.y == j:
-                    lst1.append(tile)
-        lst.append(lst1)
-    
-    for i in lst:
-        for j in range(1 , len(i)):
-            if i[j].value != 0:
-                while i[j-1].value == 0:
-                    i[j-1].value = i[j].value
-                    i[j].value = 0
-                    chagneed = True
-                    if j > 1:
-                        j-=1
-                if i[j-1].value == i[j].value:
-                    i[j-1].value += i[j].value
-                    i[j].value = 0
-                    chagneed = True
-     
-    return update(lst) , chagneed
-    
-def down(tiles):
-    changeed = False
-    lst = []
-    for i in range(1 , number +1):
-        lst1 = []
-        for j in range(number , 0 , -1):
-            for tile in tiles:
-                if tile.x == i and tile.y == j:
-                    lst1.append(tile)
-        lst.append(lst1)
-    
-    for i in lst:
-        for j in range(1 , len(i)):
-            if i[j].value != 0:
-                while i[j-1].value == 0:
-                    i[j-1].value = i[j].value
-                    i[j].value = 0
-                    if j > 1:
-                        changeed = True
-                        j-=1
-                if i[j-1].value == i[j].value:
-                    i[j-1].value += i[j].value
-                    i[j].value = 0
-                    changeed = True
-     
-    return update(lst) , changeed
-    
-
 class Tile:
     def __init__(self , x , y , value , id):
         self.x = x
