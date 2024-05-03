@@ -1,10 +1,8 @@
-Hi!
+This is the 2048 Game 
 
-Hope you're doing great .
+it doesn't have any animation yet .
 
-This is incomplete 2048 game ...
-
-Here is a demo .
+but here is a demo ...
 
 ![Screenshot 2024-04-29 040756](https://github.com/AlirezaSaadatmand/2048-Game/assets/157215281/12eb4ce2-000d-40df-971e-b8417978a224)
 
