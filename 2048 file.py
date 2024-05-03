@@ -264,7 +264,7 @@ pygame.display.set_caption("2048")
 clock = pygame.time.Clock()
 
 begin_text = pygame.font.Font(None , 40)
-begin_text = begin_text.render("How big should the table be ?" , "black" , False)
+begin_text = begin_text.render("How big should the table be ? (3 to 6)" , "black" , False)
 begin_text_rect = begin_text.get_rect(center = (WIDTH / 2 , HEIGHT / 2 - 50))
 
 sur = pygame.Surface( (100 , 30) )
