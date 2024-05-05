@@ -231,7 +231,6 @@ def draw():
     global block_lst
     global tiles
 
-    
     screen.fill("#c1b3a4")
     
     screen.blit(border_sur , border_sur_rect)
@@ -277,7 +276,6 @@ border_sur_rect = border_sur.get_rect(center = (WIDTH / 2 , HEIGHT / 2))
 
 text = ""
 changed = True
-
 
 while True:
     for event in pygame.event.get():
