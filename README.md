@@ -8,7 +8,7 @@ but here is a demo ...
 
 
 
-it can be small or big
+it can be small or big (3 to 6)
 
 
 ![Screenshot 2024-04-29 132652](https://github.com/AlirezaSaadatmand/2048-Game/assets/157215281/a69d6486-c2d5-4594-aeb8-a292f4289efb)
