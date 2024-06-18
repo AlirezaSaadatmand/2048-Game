@@ -259,7 +259,6 @@ def draw():
 pygame.init()
 screen = pygame.display.set_mode( (WIDTH , HEIGHT) )
 screen.fill("#fbf8f1")
-pygame.display.set_caption("2048")
 clock = pygame.time.Clock()
 
 begin_text = pygame.font.Font(None , 40)
@@ -278,6 +277,7 @@ text = ""
 changed = True
 
 while True:
+    pygame.display.set_caption(f" FPS : {round(clock.get_fps())} 2048")
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
